@@ -1,5 +1,5 @@
 ### Script Description
-This is a script to automatise the download DICOM images from a visor.
+This is a script to automatise the download of DICOM images from a visor.
 
 ### Getting Started
 1. Install python in your machine. 
