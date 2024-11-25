@@ -28,7 +28,7 @@ def search_study(access_number):
 def download_study():
     pyautogui.moveTo(download, duration=1)
     pyautogui.doubleClick()
-    time.sleep(100)
+    time.sleep(30)
 
 def get_list(file):
     df = pd.read_excel(file)
@@ -51,9 +51,10 @@ def process_file():
     file_path = open_file_selector()
     if file_path:
         try:
+            root.destroy()
             messagebox.showinfo("Success", "Clica OK i vés a StarViewer a la pantalla del PACS")
             accessnum = get_list(file_path)
-            time.sleep(5)  # Give the user time to set up the app window
+            time.sleep(7)  # Give the user time to set up the app window
             for i in accessnum:
                 search_study(i)
                 print(f"Searching study with accession number {i}")
@@ -67,7 +68,7 @@ def process_file():
 if __name__ == "__main__":
     root = Tk()
     root.title("Download DICOM Images")
-    root.geometry("400x150")  
+    root.geometry("550x150")  
 
     mainframe = ttk.Frame(root, padding="3 3 12 12")
     mainframe.grid(column=0, row=0, sticky=(N, W, E, S))
