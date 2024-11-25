@@ -10,6 +10,9 @@ cerca = (914, 533)
 formaccession = (653, 400)
 download = (441, 630)
 
+# Global variable to control the process
+should_stop = False
+
 # Functions
 def search_study(access_number):
     pyautogui.moveTo(cerca)
@@ -46,8 +49,24 @@ def open_file_selector():
         return None
     return file_path
 
+def stop_process():
+    """Stop the automation process."""
+    global should_stop
+    should_stop = True
+    messagebox.showinfo("Stop", "The process will stop after the current task.")
+
+def create_control_window():
+    """Create a control window with a Stop button."""
+    control_window = Toplevel()
+    control_window.title("Finestra de control")
+    control_window.geometry("300x100")
+    ttk.Label(control_window, text="El procés de baixar imatges està funcionant").pack(pady=10)
+    ttk.Button(control_window, text="Parar", command=stop_process).pack(pady=10)
+
 def process_file():
     """Process the selected file and perform automation."""
+    global should_stop
+    should_stop = False  # Reset stop flag
     file_path = open_file_selector()
     if file_path:
         try:
@@ -55,12 +74,17 @@ def process_file():
             messagebox.showinfo("Success", "Clica OK i vés a StarViewer a la pantalla del PACS")
             accessnum = get_list(file_path)
             time.sleep(7)  # Give the user time to set up the app window
+            create_control_window()  # Create the control window
             for i in accessnum:
+                if should_stop:
+                    print("Procés finalitzat")
+                    break
                 search_study(i)
                 print(f"Searching study with accession number {i}")
                 download_study()
                 print(f"Downloading study with accession number {i}")
-            messagebox.showinfo("Success", "S'han baixat totes les imatges")
+            if not should_stop:
+                messagebox.showinfo("Success", "S'han baixat totes les imatges")
         except Exception as e:
             messagebox.showerror("Error", f"An error occurred: {e}")
 
