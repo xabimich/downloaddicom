@@ -1,2 +1,2 @@
 import pyautogui
-pyautogui.displayMousePosition()
+pyautogui.position()
