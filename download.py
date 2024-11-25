@@ -1,7 +1,9 @@
 import pyautogui
 import time
 import pandas as pd
-from tkinter import Tk, filedialog, messagebox, Button
+from tkinter import *
+from tkinter import messagebox, filedialog
+from tkinter import ttk
 
 # Coordinates
 cerca = (914, 533)
@@ -36,7 +38,7 @@ def get_list(file):
 def open_file_selector():
     """Open a file dialog to select the Excel file."""
     file_path = filedialog.askopenfilename(
-        title="Select the Access Number Excel File",
+        title="Selecciona l'excel amb els accession numbers",
         filetypes=[("Excel Files", "*.xlsx")]
     )
     if not file_path:
@@ -49,6 +51,7 @@ def process_file():
     file_path = open_file_selector()
     if file_path:
         try:
+            messagebox.showinfo("Success", "Clica OK i vés a StarViewer a la pantalla del PACS")
             accessnum = get_list(file_path)
             time.sleep(5)  # Give the user time to set up the app window
             for i in accessnum:
@@ -56,26 +59,24 @@ def process_file():
                 print(f"Searching study with accession number {i}")
                 download_study()
                 print(f"Downloading study with accession number {i}")
-            messagebox.showinfo("Success", "All studies processed successfully!")
+            messagebox.showinfo("Success", "S'han baixat totes les imatges")
         except Exception as e:
             messagebox.showerror("Error", f"An error occurred: {e}")
 
 # Main Script with GUI
 if __name__ == "__main__":
     root = Tk()
-    root.title("Download Dicom Images")
-    root.geometry("300x150")
-    root.resizable(False, False)
+    root.title("Download DICOM Images")
+    root.geometry("400x150")  
 
-    # Add a button to trigger file selection
-    button = Button(
-        root,
-        text="Select File and Start",
-        command=process_file,
-        width=20,
-        height=2
-    )
-    button.pack(pady=40)
+    mainframe = ttk.Frame(root, padding="3 3 12 12")
+    mainframe.grid(column=0, row=0, sticky=(N, W, E, S))
+    root.columnconfigure(0, weight=1)
+    root.rowconfigure(0, weight=1)
 
-    # Start the Tkinter event loop
+    ttk.Label(mainframe, text="Selecciona el excel que conté els access numbers.").grid(column=3, row=1, sticky=(S))
+    ttk.Label(mainframe, text="Ha de seguir el mateix format que l'excel de la carpeta de la app.").grid(column=3, row=2, sticky=(S))
+    ttk.Button(mainframe, text="Select File", command=process_file).grid(column=3, row=3, sticky=(S))
+    ttk.Label(mainframe, text="Created by Xabier Michelena").grid(column=3, row=4, sticky=(S))
+
     root.mainloop()
