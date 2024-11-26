@@ -11,7 +11,7 @@ pyautogui.FAILSAFE = True
 
 # Coordinates
 cerca = (914, 533)
-formaccession = (653, 380)
+formaccession = (640, 363)
 download = (441, 630)
 
 # Global variable to control the process
