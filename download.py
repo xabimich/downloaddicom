@@ -10,9 +10,9 @@ import threading
 pyautogui.FAILSAFE = True
 
 # Coordinates
-cerca = (914, 533)
+cerca = (855, 499)
 formaccession = (640, 363)
-download = (441, 630)
+download = (242, 590)
 
 # Global variable to control the process
 should_stop = False
