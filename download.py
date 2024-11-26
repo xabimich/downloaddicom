@@ -18,8 +18,6 @@ download = (242, 590)
 should_stop = False
 
 def search_study(access_number):
-    pyautogui.moveTo(cerca, duration=0.5)
-    pyautogui.click()
     pyautogui.moveTo(formaccession, duration=0.5)
     pyautogui.click()
     pyautogui.typewrite(access_number, interval=0.1)
@@ -32,7 +30,7 @@ def search_study(access_number):
     pyautogui.hotkey('ctrl', 'x')
 
 def download_study():
-    pyautogui.moveTo(download, duration=1)
+    pyautogui.moveTo(download, duration=3)
     pyautogui.doubleClick()
     time.sleep(30)
 
