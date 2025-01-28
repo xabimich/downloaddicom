@@ -32,6 +32,7 @@ def search_study(access_number):
 
 def download_study():
     pyautogui.moveTo(select, duration=1)
+    pyautogui.click()
     pyautogui.moveTo(download, duration=3)
     pyautogui.click()
     time.sleep(30)
