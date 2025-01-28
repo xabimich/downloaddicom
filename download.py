@@ -13,6 +13,7 @@ pyautogui.FAILSAFE = True
 cerca = (860, 544)
 formaccession = (642, 415)
 download = (226, 818)
+select = (275, 643)
 
 # Global variable to control the process
 should_stop = False
@@ -30,6 +31,7 @@ def search_study(access_number):
     pyautogui.hotkey('ctrl', 'x')
 
 def download_study():
+    pyautogui.moveTo(select, duration=1)
     pyautogui.moveTo(download, duration=3)
     pyautogui.doubleClick()
     time.sleep(30)
