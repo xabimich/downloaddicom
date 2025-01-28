@@ -12,7 +12,7 @@ pyautogui.FAILSAFE = True
 # Coordinates
 cerca = (860, 544)
 formaccession = (642, 415)
-download = (226, 818)
+download = (245, 824)
 select = (275, 643)
 
 # Global variable to control the process
@@ -33,7 +33,7 @@ def search_study(access_number):
 def download_study():
     pyautogui.moveTo(select, duration=1)
     pyautogui.moveTo(download, duration=3)
-    pyautogui.doubleClick()
+    pyautogui.click()
     time.sleep(30)
 
 def get_list(file):
