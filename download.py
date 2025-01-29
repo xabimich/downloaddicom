@@ -69,7 +69,8 @@ def process_file_in_thread(file_path):
     global should_stop
     should_stop = False  # Reset the stop flag
     try:
-        messagebox.showinfo("Success", "Clica OK i vés a StarViewer a la pantalla del PACS")
+        messagebox.showinfo("Success", "Vés a StarViewer a la pantalla del PACS, selecciona cerca avançada. \
+                            Un cop tinguis això a la pantalla, clica OK i torna a la pantalla del PACS")
         accessnum = get_list(file_path)
         time.sleep(7)  # Time for user to set up the app window
         create_control_window()  # Update the control window
